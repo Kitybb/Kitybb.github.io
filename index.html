@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎨 Welcome & Getting Started ✨</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            transition: background 0.6s ease, color 0.6s ease;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .dark .glass-panel {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body id="pageBody" class="min-h-screen text-slate-800 dark:text-slate-100 flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+    <header class="sticky top-0 z-50 w-full px-6 py-4 transition-all duration-300">
+        <div class="max-w-7xl mx-auto glass-panel rounded-2xl px-6 py-3 flex items-center justify-between shadow-xl">
+            <div class="flex items-center space-x-3">
+                <div id="navLogo" class="w-10 h-10 rounded-xl flex items-center justify-center text-white font-bold text-xl shadow-md transition-all duration-300">
+                    <i class="fa-brands fa-wordpress"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-lg tracking-tight leading-tight">Welcome</h1>
+                    <p class="text-xs opacity-75">Getting Started Guide</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#welcome" class="hover:opacity-75 transition">Welcome</a>
+                <a href="#setup" class="hover:opacity-75 transition">Quick Setup</a>
+                <a href="#resources" class="hover:opacity-75 transition">Resources</a>
+                <a href="#support" class="hover:opacity-75 transition">Support</a>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <!-- Theme Selector Menu -->
+                <div class="relative">
+                    <button onclick="toggleThemeMenu()" id="themeMenuBtn" class="flex items-center space-x-2 px-3.5 py-2 rounded-xl text-xs font-semibold glass-card hover:shadow transition">
+                        <i class="fa-solid fa-palette"></i>
+                        <span id="activeThemeLabel" class="hidden sm:inline">Theme</span>
+                        <i class="fa-solid fa-chevron-down text-[10px]"></i>
+                    </button>
+                    <div id="themeDropdown" class="absolute right-0 mt-2 w-52 glass-panel rounded-2xl p-2 shadow-2xl hidden z-50 text-xs font-medium space-y-1">
+                        <div class="px-3 py-1.5 text-[10px] uppercase tracking-wider opacity-60 font-bold">Select Theme Style</div>
+                        <button onclick="setThemeStyle('emerald')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition flex items-center justify-between">Aurora Emerald <span class="w-3 h-3 rounded-full bg-emerald-500 inline-block"></span></button>
+                        <button onclick="setThemeStyle('neon')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition flex items-center justify-between">Cyber Neon <span class="w-3 h-3 rounded-full bg-cyan-500 inline-block"></span></button>
+                        <button onclick="setThemeStyle('coral')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition flex items-center justify-between">Sunset Coral <span class="w-3 h-3 rounded-full bg-rose-500 inline-block"></span></button>
+                        <button onclick="setThemeStyle('ocean')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition flex items-center justify-between">Deep Ocean Blue <span class="w-3 h-3 rounded-full bg-blue-600 inline-block"></span></button>
+                        <button onclick="setThemeStyle('cosmos')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition flex items-center justify-between">Stellar Cosmos <span class="w-3 h-3 rounded-full bg-purple-600 inline-block"></span></button>
+                        <button onclick="setThemeStyle('obsidian')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-black/5 dark:hover:bg-white/10 transition flex items-center justify-between">Ruby Obsidian <span class="w-3 h-3 rounded-full bg-red-600 inline-block"></span></button>
+                    </div>
+                </div>
+
+                <!-- Dark Mode Button -->
+                <button onclick="toggleDarkMode()" id="darkModeBtn" class="w-10 h-10 rounded-xl glass-card flex items-center justify-center hover:shadow transition" title="Toggle Light/Dark Mode">
+                    <i id="darkModeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-6 py-12 w-full space-y-16">
+        <!-- Hero Welcome Section -->
+        <section id="welcome" class="glass-panel rounded-3xl p-8 md:p-16 text-center relative overflow-hidden shadow-2xl">
+            <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full opacity-30 filter blur-3xl pointer-events-none transition-all duration-700" id="blob1"></div>
+            <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full opacity-30 filter blur-3xl pointer-events-none transition-all duration-700" id="blob2"></div>
+            
+            <div class="relative z-10 max-w-3xl mx-auto space-y-6">
+                <span id="heroBadge" class="px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider inline-block shadow-sm">Welcome to Website</span>
+                <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight">Build Your Dream Website Today</h2>
+                <p class="text-base md:text-lg opacity-80 leading-relaxed">We've assembled everything you need to start your website. From powerful block editing to fully customizable frosted glass themes, your digital presence begins right here.</p>
+                
+                <div class="flex flex-wrap justify-center gap-4 pt-4">
+                    <button onclick="triggerPopup('Launching site customization wizard...')" id="primaryActionBtn" class="px-8 py-3.5 rounded-2xl text-white font-semibold shadow-lg hover:scale-105 transition transform">Customize Your Site</button>
+                    <button onclick="randomizeThemeAndMode()" class="px-8 py-3.5 rounded-2xl glass-card font-semibold hover:shadow-lg transition flex items-center space-x-2">
+                        <i class="fa-solid fa-shuffle"></i>
+                        <span>Randomize Theme</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Quick Setup Grid -->
+        <section id="setup" class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h3 class="text-2xl font-bold tracking-tight">Next Steps & Quick Setup</h3>
+                    <p class="text-sm opacity-70">Essential actions to configure your new Website installation</p>
+                </div>
+                <span class="text-xs font-semibold px-3 py-1.5 rounded-xl glass-card">Step 1 of 4</span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg shadow-md" id="cardIcon1">
+                            <i class="fa-solid fa-pen-nib"></i>
+                        </div>
+                        <h4 class="text-lg font-bold leading-snug">Write Your First Blog Post</h4>
+                        <p class="text-sm opacity-75">Ready to publish your thoughts? Use the intuitive block editor to create, format, and share stunning articles with your audience.</p>
+                    </div>
+                    <button onclick="triggerPopup('Opening post editor dashboard...')" class="w-full py-2.5 rounded-xl text-center text-xs font-semibold glass-card hover:opacity-100 transition">Create Post &rarr;</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg shadow-md" id="cardIcon2">
+                            <i class="fa-solid fa-paintbrush"></i>
+                        </div>
+                        <h4 class="text-lg font-bold leading-snug">Manage Themes & Styles</h4>
+                        <p class="text-sm opacity-75">Switch between stunning pre-configured color themes or customize typography, layouts, and frosted glass components effortlessly.</p>
+                    </div>
+                    <button onclick="triggerPopup('Opening theme customizer panel...')" class="w-full py-2.5 rounded-xl text-center text-xs font-semibold glass-card hover:opacity-100 transition">Manage Themes &rarr;</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-panel rounded-2xl p-6 flex flex-col justify-between space-y-4 shadow-xl hover:-translate-y-1 transition duration-300">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white text-lg shadow-md" id="cardIcon3">
+                            <i class="fa-solid fa-plug"></i>
+                        </div>
+                        <h4 class="text-lg font-bold leading-snug">Explore Powerful Plugins</h4>
+                        <p class="text-sm opacity-75">Extend your website functionality with SEO tools, security extensions, e-commerce suites, and performance boosters.</p>
+                    </div>
+                    <button onclick="triggerPopup('Opening plugin repository...')" class="w-full py-2.5 rounded-xl text-center text-xs font-semibold glass-card hover:opacity-100 transition">Browse Plugins &rarr;</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resources & Support Section -->
+        <section id="resources" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="glass-panel rounded-3xl p-8 space-y-4 shadow-xl">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-md" id="resIconBox">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h3 class="text-2xl font-bold tracking-tight">Documentation & Learning</h3>
+                <p class="text-sm opacity-80 leading-relaxed">Whether you are a beginner or an advanced developer, the Website Codex and community documentation provide step-by-step guidance for every feature.</p>
+                <div class="pt-2">
+                    <a href="#welcome" class="text-xs font-bold inline-flex items-center space-x-2 opacity-90 hover:opacity-100"><span>Explore Docs</span> <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div id="support" class="glass-panel rounded-3xl p-8 space-y-4 shadow-xl">
+                <div class="w-12 h-12 rounded-2xl flex items-center justify-center text-white font-bold text-xl shadow-md" id="supIconBox">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <h3 class="text-2xl font-bold tracking-tight">Community Support</h3>
+                <p class="text-sm opacity-80 leading-relaxed">Join millions of creators, designers, and developers in the global Website forums. Get answers, share feedback, and contribute to the platform.</p>
+                <div class="space-y-3 pt-2">
+                    <input type="text" placeholder="Your Name" class="w-full px-4 py-2.5 rounded-xl glass-card text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <input type="email" placeholder="Your Email Address" class="w-full px-4 py-2.5 rounded-xl glass-card text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                    <button onclick="triggerPopup('Support inquiry sent successfully!')" id="submitInquiryBtn" class="w-full py-2.5 rounded-xl text-white font-semibold text-xs shadow-md transition">Contact Support</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="w-full px-6 py-8 mt-12">
+        <div class="max-w-7xl mx-auto glass-panel rounded-2xl px-8 py-6 flex flex-col md:flex-row items-center justify-between text-xs opacity-80 space-y-4 md:space-y-0 shadow-lg">
+            <p>&copy; Website Welcome Portal. Proudly powered by Open Source.</p>
+            <div class="flex items-center space-x-6">
+                <a href="#welcome" class="hover:opacity-100 transition">Privacy Policy</a>
+                <a href="#welcome" class="hover:opacity-100 transition">Terms of Use</a>
+                <a href="#welcome" class="hover:opacity-100 transition">Credits</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Modal Dialog Box -->
+    <div id="customModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center hidden opacity-0 transition-opacity duration-300">
+        <div class="glass-panel rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl space-y-4 text-center transform scale-95 transition-transform duration-300" id="modalBox">
+            <div class="w-12 h-12 mx-auto rounded-full flex items-center justify-center text-white text-lg shadow-md" id="modalIcon">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h4 class="text-lg font-bold" id="modalTitle">Notice</h4>
+            <p id="modalText" class="text-xs opacity-80 leading-relaxed">Action processed successfully.</p>
+            <button onclick="closeModal()" id="modalBtn" class="w-full py-2.5 rounded-xl text-white text-xs font-semibold shadow transition">OK</button>
+        </div>
+    </div>
+
+    <script>
+var _0x3b72ac=_0x1496;(function(_0x20a289,_0x5a6207){var _0x16185d=_0x1496,_0x7f99f7=_0x20a289();while(!![]){try{var _0x47e912=-parseInt(_0x16185d(0x15b))/0x1*(parseInt(_0x16185d(0x148))/0x2)+-parseInt(_0x16185d(0x167))/0x3*(-parseInt(_0x16185d(0x147))/0x4)+parseInt(_0x16185d(0x17d))/0x5+-parseInt(_0x16185d(0x16e))/0x6+-parseInt(_0x16185d(0x180))/0x7+parseInt(_0x16185d(0x14c))/0x8*(parseInt(_0x16185d(0x152))/0x9)+parseInt(_0x16185d(0x146))/0xa;if(_0x47e912===_0x5a6207)break;else _0x7f99f7['push'](_0x7f99f7['shift']());}catch(_0x374b4d){_0x7f99f7['push'](_0x7f99f7['shift']());}}}(_0x5ab8,0x2235d));function _0x1496(_0x2bbe39,_0xdc30e9){_0x2bbe39=_0x2bbe39-0x13b;var _0x5ab8bd=_0x5ab8();var _0x1496c5=_0x5ab8bd[_0x2bbe39];return _0x1496c5;}var themesData={'emerald':{'name':_0x3b72ac(0x160),'lightBg':'linear-gradient(135deg,\x20#ecfdf5\x200%,\x20#d1fae5\x2050%,\x20#a7f3d0\x20100%)','darkBg':_0x3b72ac(0x154),'accentHex':'#10b981','blob1':_0x3b72ac(0x18a),'blob2':_0x3b72ac(0x145)},'neon':{'name':_0x3b72ac(0x156),'lightBg':_0x3b72ac(0x168),'darkBg':_0x3b72ac(0x140),'accentHex':_0x3b72ac(0x16a),'blob1':_0x3b72ac(0x155),'blob2':_0x3b72ac(0x166)},'coral':{'name':_0x3b72ac(0x142),'lightBg':_0x3b72ac(0x150),'darkBg':'linear-gradient(135deg,\x20#4c0519\x200%,\x20#881337\x2050%,\x20#111827\x20100%)','accentHex':'#f43f5e','blob1':_0x3b72ac(0x18f),'blob2':_0x3b72ac(0x15f)},'ocean':{'name':_0x3b72ac(0x13b),'lightBg':_0x3b72ac(0x169),'darkBg':_0x3b72ac(0x163),'accentHex':_0x3b72ac(0x16c),'blob1':'#60a5fa','blob2':'#2563eb'},'cosmos':{'name':'Stellar\x20Cosmos','lightBg':_0x3b72ac(0x170),'darkBg':'linear-gradient(135deg,\x20#2e1065\x200%,\x20#4c1d95\x2050%,\x20#090314\x20100%)','accentHex':_0x3b72ac(0x14b),'blob1':_0x3b72ac(0x141),'blob2':_0x3b72ac(0x13e)},'obsidian':{'name':'Ruby\x20Obsidian','lightBg':_0x3b72ac(0x172),'darkBg':_0x3b72ac(0x14a),'accentHex':'#dc2626','blob1':_0x3b72ac(0x159),'blob2':_0x3b72ac(0x17f)}},activeTheme=_0x3b72ac(0x13f),isDark=![];function toggleThemeMenu(){var _0xe6990=_0x3b72ac,_0x3d3938=document['getElementById'](_0xe6990(0x15a));_0x3d3938[_0xe6990(0x18b)][_0xe6990(0x153)]('hidden');}window[_0x3b72ac(0x15c)](_0x3b72ac(0x182),function(_0x577e5a){var _0x1c3dc2=_0x3b72ac,_0xaca32d=document[_0x1c3dc2(0x149)](_0x1c3dc2(0x164)),_0x548aac=document[_0x1c3dc2(0x149)](_0x1c3dc2(0x15a));!_0xaca32d[_0x1c3dc2(0x187)](_0x577e5a['target'])&&!_0x548aac[_0x1c3dc2(0x187)](_0x577e5a[_0x1c3dc2(0x189)])&&_0x548aac['classList']['add']('hidden');});function setThemeStyle(_0x23180b){var _0x44190f=_0x3b72ac;activeTheme=_0x23180b,applyThemeState(),document[_0x44190f(0x149)](_0x44190f(0x15a))[_0x44190f(0x18b)]['add'](_0x44190f(0x17e));}function toggleDarkMode(){isDark=!isDark,applyThemeState();}function applyThemeState(){var _0x1ea766=_0x3b72ac,_0x51705a=themesData[activeTheme],_0x25bf94=document['getElementById']('pageBody'),_0x220f72=document['documentElement'];isDark?(_0x220f72[_0x1ea766(0x18b)][_0x1ea766(0x143)](_0x1ea766(0x14e)),_0x25bf94[_0x1ea766(0x14f)]['background']=_0x51705a[_0x1ea766(0x18e)],document['getElementById'](_0x1ea766(0x17b))[_0x1ea766(0x13c)]=_0x1ea766(0x185)):(_0x220f72[_0x1ea766(0x18b)][_0x1ea766(0x16b)](_0x1ea766(0x14e)),_0x25bf94['style'][_0x1ea766(0x181)]=_0x51705a[_0x1ea766(0x184)],document[_0x1ea766(0x149)](_0x1ea766(0x17b))['className']=_0x1ea766(0x158)),document[_0x1ea766(0x149)](_0x1ea766(0x14d))['innerText']=_0x51705a[_0x1ea766(0x171)],document[_0x1ea766(0x149)]('navLogo')[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a[_0x1ea766(0x18c)],document[_0x1ea766(0x149)](_0x1ea766(0x16f))['style'][_0x1ea766(0x174)]=_0x51705a['accentHex'],document['getElementById'](_0x1ea766(0x16f))[_0x1ea766(0x14f)]['color']=_0x1ea766(0x179),document['getElementById']('primaryActionBtn')['style'][_0x1ea766(0x174)]=_0x51705a[_0x1ea766(0x18c)],document['getElementById']('cardIcon1')[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a[_0x1ea766(0x18c)],document[_0x1ea766(0x149)](_0x1ea766(0x13d))[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a['accentHex'],document[_0x1ea766(0x149)](_0x1ea766(0x173))['style'][_0x1ea766(0x174)]=_0x51705a['accentHex'],document[_0x1ea766(0x149)](_0x1ea766(0x177))[_0x1ea766(0x14f)]['backgroundColor']=_0x51705a[_0x1ea766(0x18c)],document[_0x1ea766(0x149)](_0x1ea766(0x188))[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a['accentHex'],document[_0x1ea766(0x149)](_0x1ea766(0x176))[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a[_0x1ea766(0x18c)],document[_0x1ea766(0x149)](_0x1ea766(0x15e))['style'][_0x1ea766(0x174)]=_0x51705a[_0x1ea766(0x18c)],document[_0x1ea766(0x149)]('modalIcon')[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a[_0x1ea766(0x18c)],document[_0x1ea766(0x149)]('blob1')[_0x1ea766(0x14f)]['backgroundColor']=_0x51705a[_0x1ea766(0x151)],document[_0x1ea766(0x149)]('blob2')[_0x1ea766(0x14f)][_0x1ea766(0x174)]=_0x51705a['blob2'];}function randomizeThemeAndMode(){var _0x44f3bf=_0x3b72ac,_0x2919ff=[_0x44f3bf(0x13f),_0x44f3bf(0x18d),_0x44f3bf(0x165),_0x44f3bf(0x161),_0x44f3bf(0x186),_0x44f3bf(0x162)],_0x51cf7a=_0x2919ff[Math[_0x44f3bf(0x15d)](Math[_0x44f3bf(0x17c)]()*_0x2919ff[_0x44f3bf(0x178)])],_0x5ad335=Math[_0x44f3bf(0x17c)]()<0.5;activeTheme=_0x51cf7a,isDark=_0x5ad335,applyThemeState();}function triggerPopup(_0x1166a2){var _0x54dc2c=_0x3b72ac;document[_0x54dc2c(0x149)](_0x54dc2c(0x17a))[_0x54dc2c(0x144)]=_0x1166a2;var _0x4ab643=document[_0x54dc2c(0x149)]('customModal'),_0x4a10d8=document[_0x54dc2c(0x149)](_0x54dc2c(0x175));_0x4ab643[_0x54dc2c(0x18b)]['remove']('hidden'),setTimeout(function(){var _0xf5792b=_0x54dc2c;_0x4ab643[_0xf5792b(0x18b)]['remove']('opacity-0'),_0x4a10d8[_0xf5792b(0x18b)][_0xf5792b(0x16b)](_0xf5792b(0x183)),_0x4a10d8[_0xf5792b(0x18b)][_0xf5792b(0x143)](_0xf5792b(0x157));},0xa);}function closeModal(){var _0x337ce2=_0x3b72ac,_0x148d29=document[_0x337ce2(0x149)](_0x337ce2(0x16d)),_0x3de0ba=document['getElementById'](_0x337ce2(0x175));_0x148d29[_0x337ce2(0x18b)][_0x337ce2(0x143)]('opacity-0'),_0x3de0ba['classList'][_0x337ce2(0x16b)](_0x337ce2(0x157)),_0x3de0ba['classList'][_0x337ce2(0x143)]('scale-95'),setTimeout(function(){var _0x18ddba=_0x337ce2;_0x148d29[_0x18ddba(0x18b)][_0x18ddba(0x143)]('hidden');},0x12c);}window['onload']=function(){randomizeThemeAndMode();};function _0x5ab8(){var _0xcd9c2f=['Cyber\x20Neon','scale-100','fa-solid\x20fa-moon','#f87171','themeDropdown','4GzwVjH','addEventListener','floor','modalBtn','#e11d48','Aurora\x20Emerald','ocean','obsidian','linear-gradient(135deg,\x20#172554\x200%,\x20#1e3a8a\x2050%,\x20#020617\x20100%)','themeMenuBtn','coral','#0284c7','114mRQGgR','linear-gradient(135deg,\x20#ecfeff\x200%,\x20#cffafe\x2050%,\x20#a5f3fc\x20100%)','linear-gradient(135deg,\x20#eff6ff\x200%,\x20#dbeafe\x2050%,\x20#bfdbfe\x20100%)','#06b6d4','remove','#3b82f6','customModal','922812fqrUOs','heroBadge','linear-gradient(135deg,\x20#f5f3ff\x200%,\x20#ede9fe\x2050%,\x20#ddd6fe\x20100%)','name','linear-gradient(135deg,\x20#fef2f2\x200%,\x20#fee2e2\x2050%,\x20#fecaca\x20100%)','cardIcon3','backgroundColor','modalBox','submitInquiryBtn','resIconBox','length','#ffffff','modalText','darkModeIcon','random','12740ArejCb','hidden','#b91c1c','74634EdhLfY','background','click','scale-95','lightBg','fa-solid\x20fa-sun','cosmos','contains','supIconBox','target','#34d399','classList','accentHex','neon','darkBg','#fb7185','Deep\x20Ocean\x20Blue','className','cardIcon2','#7c3aed','emerald','linear-gradient(135deg,\x20#082f49\x200%,\x20#0c4a6e\x2050%,\x20#030712\x20100%)','#a78bfa','Sunset\x20Coral','add','innerText','#059669','3219390hBpRfu','10520yjrHKv','84178Orjmjv','getElementById','linear-gradient(135deg,\x20#450a0a\x200%,\x20#7f1d1d\x2050%,\x20#0f0505\x20100%)','#8b5cf6','16LztjcR','activeThemeLabel','dark','style','linear-gradient(135deg,\x20#fff1f2\x200%,\x20#ffe4e6\x2050%,\x20#fecdd3\x20100%)','blob1','218331aRSeDv','toggle','linear-gradient(135deg,\x20#022c22\x200%,\x20#064e3b\x2050%,\x20#021a14\x20100%)','#22d3ee'];_0x5ab8=function(){return _0xcd9c2f;};return _0x5ab8();}
+    </script>
+</body>
+</html>
